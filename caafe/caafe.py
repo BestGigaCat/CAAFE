@@ -1,7 +1,9 @@
 import copy
 import numpy as np
 
-import openai
+from openai import OpenAI
+
+client = OpenAI()
 from sklearn.model_selection import RepeatedKFold
 from .caafe_evaluate import (
     evaluate_dataset,
@@ -131,13 +133,11 @@ def generate_features(
         if model == "skip":
             return ""
 
-        completion = openai.ChatCompletion.create(
-            model=model,
-            messages=messages,
-            stop=["```end"],
-            temperature=0.5,
-            max_tokens=500,
-        )
+        completion = client.chat.completions.create(model=model,
+        messages=messages,
+        stop=["```end"],
+        temperature=0.5,
+        max_tokens=500)
         code = completion["choices"][0]["message"]["content"]
         code = code.replace("```python", "").replace("```", "").replace("<end>", "")
         return code

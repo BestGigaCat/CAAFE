@@ -79,7 +79,6 @@ if __name__ == "__main__":
 
     model = "gpt-3.5-turbo" if prompt_id == "v3" else "gpt-4"
 
-    openai.api_key = os.environ["OPENAI_API_KEY"]
 
     cc_test_datasets_multiclass = load_all_data()
     if dataset_id != -1:
