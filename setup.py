@@ -20,7 +20,7 @@ setup(
     ],
     python_requires=">=3.7",
     install_requires=[
-        "openai==0.28",
+        "openai==1.3.8",
         "kaggle",
         "openml==0.12.0",
         "tabpfn",
