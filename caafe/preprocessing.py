@@ -20,9 +20,7 @@ def create_mappings(df_train: pd.DataFrame) -> Dict[str, Dict[int, str]]:
             df_train[col].dtype.name == "category"
             or df_train[col].dtype.name == "object"
         ):
-            mappings[col] = dict(
-                enumerate(df_train[col].astype("category").cat.categories)
-            )
+            mappings[col] = {v: i for i, v in enumerate(df_train[col].astype("category").cat.categories)}
     return mappings
 
 
